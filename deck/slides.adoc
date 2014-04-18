@@ -1,10 +1,10 @@
 //= WildFly 8: rapid innovation, lightweight, modular application server
-= What's new in WildFly 8 ?
-Arun Gupta ; Red Hat; @arungupta
+= WildFly 8 的新特性
+作者 Arun Gupta ; Red Hat; @arungupta
 include::attributes.adoc[]
 
 :experimental:
-:toc2:
+:toc3:
 :sectanchors:
 :idprefix:
 :idseparator: -
@@ -18,7 +18,8 @@ include::attributes.adoc[]
 ====
 * Director, Developer Advocacy, Red Hat Inc.
 * O'Reilly and McGraw Hill author
-* Fitness freak
+* Fitness freak            
+image:arun.png[250,250]
 ====
 
 [NOTE ]
@@ -27,6 +28,30 @@ include::attributes.adoc[]
 * My name is Arun Gupta, and I drive community engagement efforts for JBoss at Red Hat
 * I've authored couple of O'Reilly best selling books and another one by McGraw Hill
 * I'm a workout nut as my kids call me and a runner
+  (是个健身狂，他孩子叫他　runner)
+====
+
+[.topic.source]
+== 演 讲 者
+
+====
+
+* 高&nbsp;&nbsp;&nbsp;&nbsp;林
+** JBoss 产品化团队
+** 微博: image:weibo.ico[] @JBoss高林
+
+* &nbsp; &nbsp;
+
+* 张建峰
+** WildFly 核心开发人员
+** 微博: image:weibo.ico[] @寻找一个苹果
+
+====
+
+[NOTE ]
+[role="speaker"]
+====
+* JBoss China Core developers
 ====
 
 [.topic.source]
@@ -36,31 +61,20 @@ image:zeroturnaround.png[] image:trophy.png[]
 [NOTE]
 [role="speaker"]
 ====
-* What we’re looking at in this part of the report are the real developer concerns and metrics including:
-** Ease of download and installation
-** Real performance metrics
-** Tooling support
-** Server Configuration
-* WebLogic and WebSphere were not included as these servers are really targeted for large-enterprises and apps in production rather than lightweight development
-* Each server was ranked from 1 to 5
-====
+* zeroturnaround 就是　JRebel　开发的那个网站
+** 他们从
+*** 下载安装的难以程度
+*** 实际的性能测量
+*** 工具的支持程度
+*** 服务器配置的方便程度
 
-== !
-"If we had to pick a *winner*, it would be *JBoss*. The only application server in the group whose score *never dropped below a 4*"
--- zeroturnaround.com
+对于从事开源项目的人来说，看看哪些方面会影响到你的项目的推广
 
-[NOTE]
-[role="speaker"]
-====
-Highhlight:
-* JBoss is the winner from all the servers studied
-* Scores range from 1-5 with JBoss never going below 4
-* JBoss AS version ??
-====
+等进行比较。最终　JBoss　赢得了比赛。
+大家有兴趣的可以上去看一下具体的比较内容
 
-== !
-"JBoss *consistently* performs *very well* in each category which is why it also *shines* in the developer profiles exercise"
--- zeroturnaround.com
+** JBoss AS 7.1.1
+====
 
 == !
 
@@ -76,8 +90,8 @@ Lets take a look at WildFly and what is it!
 == !
 
 [.statement]
-`Objective:` +
-Understand the _new features_ of _WildFly 8_ and revise some of the features _carry forward_ from _AS 7.x_.
+`目标:` +
+理解 _WildFly 8_ 的_新特性_,以及 _AS 7.X_ 的一些功能的_改进_
 
 [NOTE]
 [role="speaker"]
@@ -88,36 +102,43 @@ Understand the _new features_ of _WildFly 8_ and revise some of the features _ca
 ====
 
 [.topic]
-== What is WildFly 8 ?
+== WildFly 8 是什么?
 
 [.incremental]
-* Previously called “JBoss Application Server”
-* Upstream for Red Hat JBoss Enterprise Application Platform (JBoss EAP)
-* Fast, lightweight, manageable
-* Developer friendly
-* Supports Java EE standards and beyond
-* Open source
+* 原先为 “JBoss应用服务器(Application Server)”
+* 是红帽JBoss企业应用平台(JBoss EAP)的上游项目
+* 快速，轻量，可管理的
+* 对开发人员友好
+* 支持 Java EE 标准
+* 开源
 
 [NOTE]
 [role="speaker"]
 ====
-* The new name is relevant because it differentiates our community project from the commercial offering. After JBoss AS 7.1.2,the community offering is renamed to WildFly. This is the upstream project for JBoss Enterprise Application Platform. Main focus of WildFly is to meet community demands by rapid releases and latest in innovation. EAP is focused towards a more conservative branch, which is battle-tested for mission critical deployments.
-* WildFly provides a lightweight managed application runtime. WildFly provides a unified management layer fully integrated with all aspects of server and is exposed using a variety of APIs and protocols. These could be used to automate operational needs of any environment – small JVM on a tiny server or thousands of JVM spread across the world.
-* For JBoss, developer is the key. So from the very beginning WildFly is designed to be easy and quick to get going. It offers rapid boot time, excellent developer tooling through not just JBoss Tools project and NetBeans plugin but also community–contributed IntelliJ, and a wide variety of quick start examples.
-* WildFly implements the latest Java EE standards as well as additional open source innovative APIs. While Java EE is the most common usage of WildFly but it is not tied to any particular language or SDK. For example, TorqueBox provides full Ruby-on-Rails experience and is based on WildFly architecture and use many of its core features.
-* The source code is completely open source and available to you for free. If you have an issue with your application, you can attach a debugger and find out what might be causing the issue. You can file a bug, and then send a pull request for the patch to be applied.
+* JBoss　是个社区，应用服务器也应该有个自己的名字。
+** 使社区版和商业版分开，不容易混淆
+* 提供了一个轻量级的可管理的运行时环境
+** 什么都没有部署的情况下，启动　２　s
+** 启动占用的内存非常少。可以运行在嵌入式的硬件平台上，比如之前　Jim　演示过的运行在　Raspberry　PI　上的　jboss　AS　７　的集群
+** 提供了一个统一的管理层管理服务器的各个方面
+*** 提供丰富的　API　来进行管理
+**** Jason　Green　之前使用过　perl　脚本进行管理　JBoss　服务器，　非常适合使用脚本进行管理
+* 对开发人员友好, 丰富的开发工具（现在的主流IDE　例如：　Eclipse，　netbeans，　IntelliJ　都支持）
+** 有很多的快速开发例子，　
+** 丰富的文档(非常适合初学　javaee　领域的同学)
+* 完全开源，　如果你有问题，还可以自行调试，也可以贡献自己的代码
 ====
 
 [.topic.source]
-== WildFly 8 main features
+== WildFly 8 主要特性
 
 [.incremental]
-* Java EE7 support
-* High performance web server _Undertow_
-* Reduced port usage
-* Role based administration control & auditing
-* Automated patching
-* Minimalistic "core" distribution
+* Java EE7 支持
+* 高性能的Web服务器 _Undertow_
+* 减少端口使用
+* 基于角色的管理控制和审计能力
+* 自动打补丁机制
+* 最小的 "core" 发布包
 
 [NOTE]
 [role="speaker"]
@@ -159,9 +180,9 @@ public class ChatEndpoint {
     }
 }
 ----
-<1> Creates a WebSocket endpoint, defines the listening URL
-<2> Marks the method that receives incoming WebSocket message
-<3> Payload of the WebSocket message
+<1> 创建 WebSocket 端点, 定义 URL
+<2> 设定方法来接收WebSocket消息
+<3> 处理WebSocket消息报文
 
 [NOTE]
 [role="speaker"]
@@ -177,7 +198,7 @@ public class ChatEndpoint {
 == WildFly: Java EE 7 Batch (JSR 352)
 
 [source,xml]
-.+job.xml+
+.+myJob.xml+
 ----
 <job id="myJob" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
     <step id="myStep" >
@@ -189,20 +210,23 @@ public class ChatEndpoint {
     </step>
 </job>
 ----
-<1> Item-oriented processing, number of items in chunk
-<2> Item reader for chunk processing
-<3> Item processor for chunk processing
-<4> Item writer for chunk processing
+<1> 对数据记录逐个进行处理，数据块的记录的个数
+<2> 数据块处理，读出记录
+<3> 数据块处理，处理记录
+<4> 数据块处理，写入记录
 
 [NOTE]
 [role="speaker"]
 ====
 * Batch Processing provides item-oriented (aka chunk, and preferred style) and task-oriented (aka batchlet) processing. This is a job description of chunk processing, aka Job XML.
+** job　xml　定义不会自动　batch，　用户可以在　servlet　或者　ejb　timer　里调用
+*** batchlet　适合定期执行的面向　task　的
+*** chunk 适合大型数据处理，比如：生成报表，分析日志，图片／视频处理等。
 * Job XML typically consists of many steps, this canonical sample contains one chunk step.
 * This chunk has a reader, processor, and writer. The ref attribute refers to CDI resolvable bean name bundled with the archive.
 * The item-count attribute defines the chunk size, i.e. the number of items processed at one time.
 * The reader, processor, and writer work together for a chunk number of items at a time.
-* All of this is done within a transaction, with automatic checkpointing.
+* 在一个事务里，　自动　checkpoint
 ====
 
 [.topic.source]
@@ -219,15 +243,16 @@ StringWriter w = new StringWriter();
 JsonWriter writer = Json.createWriter(w); <4>
 writer.write(jsonObject);
 ----
-<1> Creates a JSON object builder
-<2> Adds a name/value pair to the JSON object
-<3> Returns the JSON object associated with this builder
-<4> Writes the JSON object to the writer
+<1> 创建JSON对象构建器
+<2> 加入名称/值到JSON对象
+<3> 返回构建好的JSON对象
+<4> 通过JsonWriter写入
 
 [NOTE]
 [role="speaker"]
 ====
 * JSON is a key technology for data transfer within HTML5 applications. With JSON 1.0, Java EE 7 adds new APIs to enable the parsing and generation of JSON text and objects.
+** 由　glassfish 提供
 * JSON API provides streaming and object model API to parse and generate JSON. This is an object-model API sample.
 * `JSONObject` is created and key/value name pairs are added using convenient `add` methods.
 * Created object can be written to `java.io.Writer` or `java.io.OutputStream`.
@@ -252,13 +277,18 @@ ManagedExecutorService defaultExecutor;
 
 executor.submit(new MyTask()); <3>
 ----
-<1> `Runnable` or `Callable` tasks can be submitted
-<2> `ManagedExecutor` is injected, default resource provided
-<3> Submit the task
+<1> `Runnable` 或者 `Callable` 任务可以被提交
+<2> `ManagedExecutor` 被注入, 提供缺省的服务资源
+<3> 提交要执行的任务
 
 [NOTE]
 [role="speaker"]
 ====
+* EE　下不推荐使用　SE　下的　java.lang.Thread, java.util.Timer
+** 因为创建的　thread　托管了，　托管后的　thread　就不能很好的使用　EE　管理下的服务，比如　Transaction, security 等
+** 很容易从　SE　移植
+** 执行时的上下文，包括　事务／安全
+** New 出来的　task　不能使用　cdi，但是一个task　可以是一个　CDI　的bean，　那么就可以使用　cdi　的　annotation　了。
 * Concurrency Utilities is a new addition to the Java EE 7 platform and is an extension of the Java SE Concurrency Utilities API. This API provides asynchronous capabilities to Java EE application components, at a lower level than the existing asynch APIs (offered by EJB, Servlet, JAX-RS), and thus gives you a finer-grain level of control and configuration.
 * API provides 4 types of managed objects, one of them is `ManagedExecutorService`.
 * Task can be defined as `Runnable` or `Callable`.
@@ -267,7 +297,7 @@ executor.submit(new MyTask()); <3>
 ====
 
 [.topic.source]
-== WildFly: Java EE 7 JAX-RS (JSr 339)
+== WildFly: Java EE 7 JAX-RS (JSR 339)
 
 [source,java]
 .+RunClient.java+
@@ -281,11 +311,11 @@ Person p = target
              .request(MediaType.APPLICATION_XML) <4>
              .get(Person.class); <5>
 ----
-<1> `ClientBuilder` is the entry point
-<2> Build a new web resource target, specifies the path
-<3> Sub resource URI
-<4> Define the accepted response media types
-<5> Call HTTP GET, specify the type of resource
+<1> `ClientBuilder` 客户端入口点
+<2> 创建一个新的资源目标点，给出URL路径
+<3> id定义
+<4> 定义可接收的媒体类型
+<5> 调用HTTP GET命令, 并限定资源类型
 
 [NOTE]
 [role="speaker"]
@@ -319,10 +349,10 @@ private JMSContext context; <3>
 
 context.createProducer().send(syncQueue, "..."); <4>
 ----
-<1> Create destination resource during deployment
-<2> Default JMS connection factory
-<3> Main interface of the simplified API
-<4> Fluent builder API, runtime exceptions
+<1> JMSDestinationDefinition资源的创建和命名
+<2> 缺省的 JMS connection factory
+<3> 简化的主要接口JMSContext
+<4> 流式构建API
 
 [NOTE]
 [role="speaker"]
@@ -337,8 +367,8 @@ context.createProducer().send(syncQueue, "..."); <4>
 [.topic.source]
 == Java Transaction API 1.2 (JSR 907)
 
-* `@Transactional` Transaction boundaries on CDI managed beans
-* `@TransactionScoped` CDI scope for bean instances scoped to the active JTA transaction
+* `@Transactional` CDI managed beans上定义事务边界
+* `@TransactionScoped` CDI 的范围，定义JTA事务期的bean实例
 
 
 [NOTE]
@@ -352,14 +382,14 @@ context.createProducer().send(syncQueue, "..."); <4>
 [.topic.source]
 == Contexts and Dependency Injection 1.1 (JSR 346)
 
-* Automatic enablement for beans with scope annotation and EJBs
-* ``beans.xml'' is optional
-* Bean discovery mode
-** `all`: All types
-** `annotated`: Types with bean defining annotation
-** `none`: Disable CDI
-* `@Vetoed` for programmatic disablement of classes
-* Global ordering/priority of interceptors and decorators
+* 对于定义了范围的bean和EJB，CDI自动生效
+* ``beans.xml'' 成为可选项配置
+* Bean 发现模式
+** `all`: 所有的类型
+** `annotated`: 定义了annotation的bean类型
+** `none`: 禁止CDI
+* `@Vetoed` 在classes上标记不被识别
+* 拦截器和装饰器上定义顺序和优先级的annotation
 
 [NOTE]
 [role="speaker"]
@@ -378,15 +408,15 @@ image:netbeans-wildfly.png[] image:eclipse-wildfly.png[] image:intellij-wildfly.
 image:netbeans-logo.png[] image:jbosstools-logo.png[] image:intellij-logo.png[]
 
 [.topic.source]
-== WildFly: New web server (_Undertow_)
+== WildFly: 新的 web 服务器 (_Undertow_)
 
 [.incremental]
-* Flexible and high-performance
-* Blocking / non-blocking based on NIO
-* Composition/handler based architecture
-* Lightweight & fully embeddable
-* Supports Servlet 3.1 & HTTP upgrade
-* `mod_cluster` supported
+* 可扩展，高性能
+* 基于NIO提供阻塞/非阻塞API
+* 基于Composition/handler架构
+* 轻量的，可以被嵌入使用
+* 支持 Servlet 3.1 和 HTTP upgrade 协议
+* `mod_cluster` 支持
 
 [NOTE]
 [role="speaker"]
@@ -398,7 +428,7 @@ image:netbeans-logo.png[] image:jbosstools-logo.png[] image:intellij-logo.png[]
 ====
 
 [.topic.source]
-== WildFly new web server: _Undertow_
+== WildFly 新的 web 服务器: _Undertow_
 
 [source,java]
 .+NonBlockingHandler.java+
@@ -416,9 +446,9 @@ Undertow.builder() <1>
     }
   }).build().start(); <3>
 ----
-<1> Same API used for WildFly integration, fluent builder API
-<2> Can create multiple handlers
-<3> Start the handler in JVM
+<1> 流式API来构建
+<2> 可以创建使用多个handler
+<3> 启动handler
 
 [NOTE]
 [role="speaker"]
@@ -427,21 +457,21 @@ Read through the code ;-)
 ====
 
 [.topic.source]
-== Undertow benchmarks
+== Undertow 性能测试数据
 
 image::undertow-benchmarks.png[1000, 567]
 
 NOTE: http://www.techempower.com/blog/2014/03/04/one-million-http-rps-without-load-balancing-is-easy/
 
 [.topic.source]
-== WildFly: Port reduction
+== WildFly: 端口减少
 
 [.incremental]
-* Uses HTTP Upgrade
-* Number of ports in default installation is two
-** _8080_ for applications
-** _9990_ for management
-* Only overhead is the initial HTTP Upgrade request/response
+* 使用 HTTP Upgrade
+* 缺省安装后打开的端口只有两个
+** _8080_ Web应用程序
+** _9990_ 管理界面
+* 通过HTTP Upgrade来处理各种请求
 
 [NOTE]
 [role="speaker"]
@@ -452,14 +482,14 @@ NOTE: http://www.techempower.com/blog/2014/03/04/one-million-http-rps-without-lo
 ====
 
 [.topic.source]
-== WildFly: Role based access control
+== WildFly: 基于角色的访问控制Role based access control
 
 [.incremental]
-* Pre-defined administrative and privileged _Roles_
+* 预先定义的管理和特权用户_角色(Roles)_
 ** Monitor, Operator, Maintainer, Deployer, Administrator, Auditor, Super User
-* Roles is a set of _Permissions_
-* Permissions specify which _Actions_ (lookup, read, write) are allowed on resources
-* _Users_ or _Groups_ are defined in Roles
+* 角色赋予_权限(Permissions)_
+* 权限限定了可以对资源的各种 _操作(Actions)_ (lookup, read, write)
+* _用户(Users)_和_组(Groups)_在角色中定义
 
 [NOTE]
 [role="speaker"]
@@ -470,14 +500,14 @@ NOTE: http://www.techempower.com/blog/2014/03/04/one-million-http-rps-without-lo
 ====
 
 [.topic.source]
-== WildFly: Administrative audit logging
+== WildFly: 管理审计日志
 
 [.incremental]
-* Logging of connection/authentication events
-* Logging of management operations
-* Log message as JSON records
-* Audit logging handlers
-** Local file
+* 记录所有连接认证事件
+* 记录所有管理操作
+* 记录信息是JSON格式
+* 通过不同handlers记录到
+** 本地文件
 ** Syslog (UDP / TCP / TLS)
 
 [NOTE]
@@ -488,13 +518,13 @@ NOTE: http://www.techempower.com/blog/2014/03/04/one-million-http-rps-without-lo
 ====
 
 [.topic.source]
-== WildFly: Automated patching
+== WildFly: 自动补丁机制
 
 [.incremental]
-* Allows libraries and configuration updates in an installation
-* Patches are zip bundles with updates and metadata
-* Multiple one-off patches can be applied; invalidated by the next point/CP release
-* Rollbacks are possible
+* 允许在安装时做库文件和配置的升级更新
+* 补丁包含升级用到的文件和元数据信息，打包成zip文件
+* 多次补丁包可以合并
+* 可以回滚来撤销升级
 
 [NOTE]
 [role="speaker"]
@@ -504,19 +534,21 @@ NOTE: http://www.techempower.com/blog/2014/03/04/one-million-http-rps-without-lo
 ====
 
 [.topic.source]
-== WildFly: Minimalistic "core" distribution
+== WildFly: 最小的 "core" 发布包
 
 [.incremental]
-* 15 MB download
-* Rich management layer
-* Fully concurrent service container with advanced capabilities
-* Modular class loading which enables multi-tenancy of applications
-* Pluggable hot deployment layer
-* Built-in lightweight web server
+* 15 MB 
+* 管理能力
+* 完整的并发服务控制框架
+* 模块化的类加载，可以用于多租户应用
+* 可插拔的热部署层
+* 内置轻量的web服务器
 
 [NOTE]
 [role="speaker"]
 ====
+* 不仅仅是　JavaEE　full　features
+** 例如　TorqueBox 使用　WildFly　的内核实现了　Ruby-on-Railes 的平台
 * A new download option is now available in WildFly 8, called the "core" distribution. This distribution is ideal for framework authors that want to build their own application runtime using the powerful WildFly 8 architecture.
 * This allows to add new subsystems, add new deployment types, your application needs to take advantage of the powerful CLI for managementaspect, etc. This is nothing to do with an existing standard like Java EE or anything else, its purely related to how WildFly internals work.
 * Management, classloading (JBoss Modules), logging etc is bare bones, everything else like EJB, JPA, Clustering are extensions to that. Core has a deployment manager but it does not know what to do with the uploaded archive, such as WAR, unless an extension is uploaded.
@@ -525,15 +557,15 @@ NOTE: http://www.techempower.com/blog/2014/03/04/one-million-http-rps-without-lo
 ====
 
 [.topic.source]
-== WildFly: Miscellaneous
+== WildFly: 其他内容
 
 [.incremental]
-* Improved JDK8 compatibility
+* 提高 JDK8 兼容性
 * RESTEasy 3
 * Hibernate search
-* Per-deployment security permissions
-* New public clustering API
-* Pruned: CMP, JAX-RPC, JSR 88
+* 预先定义的安全权限
+* 新的集群API
+* 取消的内容: CMP, JAX-RPC, JSR 88
 
 [NOTE]
 [role="speaker"]
@@ -547,19 +579,19 @@ NOTE: http://www.techempower.com/blog/2014/03/04/one-million-http-rps-without-lo
 ====
 
 [.topic.source]
-== WildFly: In the cloud
+== WildFly: 在云端
 
 image:openshift-logo.png[] image:cloudbees-logo.png[]
 
 [.topic.source]
-== Carry forward from AS 7.x
+== AS 7.x 延续的特性
 
 ====
-* Standalone and Managed Domain
-* Centralized Administration
-** Command Line Interface (jboss-cli)
-** Admin Console
-** Configuration files
+* 独立服务器(Standalone)和管理域(Managed Domain)
+* 管理配置中心
+** 命令行 (jboss-cli)
+** 管理控制台 (admin console)
+** 配置文件
 ====
 
 [NOTE]
@@ -570,13 +602,13 @@ image:openshift-logo.png[] image:cloudbees-logo.png[]
 ====
 
 [.topic.source]
-== Standalone and Managed Domain
+== Standalone 和 Managed Domain
 
 [.incremental]
-* *Standalone*: single independent instance
-* *Managed domain*: manage multiple WildFly instances from a single control point
-** HA from fail-over: removes single point of failure
-** HA from load-balancing: timely response to client, even with high-volume requests
+* *Standalone*: 单独的实例
+* *Managed domain*: 多个实例，被配置中心管理
+** HA from fail-over: 去除单点失败
+** HA from load-balancing: 客户端定时得到响应，即使存在大量请求
 
 [NOTE]
 [role="speaker"]
@@ -586,14 +618,6 @@ image:openshift-logo.png[] image:cloudbees-logo.png[]
 ** If more than one standalone instance is launched and multi-server management is desired, it is the user's responsibility to coordinate management across the servers. For example, to deploy an application across all of the standalone servers, the user would need to individually deploy the application on each server.
 * A managed domain that allows you to run and manage a multi-server topology and manage multiple WildFly instances from a single control point. It can be started using `bin/domain.sh|bat` scripts.
 ** This mode is recommended for production.
-* Deploying critical applications on a single node suffers from two potential problems:
-** loss of application availability when the node hosting the application crashes (single point of failure)
-** loss of application availability in the form of extreme delays in response time during high volumes of requests (overwhelmed server)
-WildFly supports two features which ensure high availability of critical Java EE applications:
-** fail-over: allows a client interacting with a Java EE application to have uninterrupted access to that application, even in the presence of node failures
-** load balancing: allows a client to have timely responses from the application, even in the presence of high-volumes of requests
-* Fail-over allows a client interacting with a Java EE application to have uninterrupted access to that application, even in the presence of node failures. If the application makes use of WildFly's fail-over services, a client interacting with an instance of that application will not be interrupted even when the node on which that instance executes crashes. Behind the scenes, WildFly makes sure that all of the user data that the application make use of (HTTP session data, EJB SFSB sessions, EJB entities and SSO credentials) are available at other nodes in the cluster, so that when a failure occurs and the client is redirected to that new node for continuation of processing (i.e. the client "fails over" to the new node), the users data is available and processing can continue.
-* Load balancing allow a client to have timely responses from the application, even in the presence of high-volumes of requests. Using a load balancer as a front-end, each incoming HTTP request can be directed to one node in the cluster for processing. in this way, the cluster acts as a pool of processing nodes and the load is "balanced" over the pool of nodes, achieving scalability and, as a consequence, availability.
 ====
 
 [.topic.source]
@@ -612,15 +636,15 @@ image::managed-domain.png[]
 ====
 
 [.topic.source]
-== Clustering Strategies
+== 集群策略
 
-* Uses UDP for communication, can be configured for unicast TCP
-* `mod_cluster`, `mod_jk`, `mod_proxy`, ISAPI or NSAPI connectors are available
-* Advantages of `mod_cluster`
-** App server performs LB factor calculations
-** Server-side LB factors are communicated to httpd
-** Dynamic configuration of HTTPD proxies
-** Dynamically route requests to a node based upon context availability
+* 使用UDP来通信，可以配置成unicast TCP
+* `mod_cluster`, `mod_jk`, `mod_proxy`, ISAPI 或者 NSAPI 连接器
+* 使用`mod_cluster`的好处
+** 应用服务器做负载均衡因子计算
+** 服务器端的负载均衡参数通知给httpd
+** 动态配置HTTPD代理
+** 可以根据上下文信息，动态路由访问请求到节点
 
 [NOTE]
 [role="speaker"]
@@ -635,16 +659,16 @@ image::managed-domain.png[]
 ====
 
 [.topic.source]
-== Command Line Interface
+== 命令行
 
 [.incremental]
 * `jboss-cli.sh`|`bat`
-* Connects to standalone instance or Domain controller
-* Interactive mode: *nix-style shell
-** Contextual command and resource-tab completion
-* Non-interactive mode: commands in files
-* High-level compound operations
-* Persistent changes
+* 连接 standalone 或者 Domain controller
+* 交互模式: *nix shell风格
+** 上下文相关命令，tab补齐功能
+* 非交互模式: 文件中包含要执行的操作
+* 多个命令组合成一个操作
+* 每个修改都会被记录
 
 [NOTE]
 [role="speaker"]
@@ -654,16 +678,14 @@ image::managed-domain.png[]
 ====
 
 [.topic.source]
-== Admin Console
+== 控制台
 
 [.incremental]
-* Simple
-* Fast
-* Lightweight
-* Avoids XML configuration
-* Single instance and domains
-* Mostly configuration, basic monitoring
-** Not a Red Hat JBoss Operations Network replacement
+* 简单  快速  轻量
+* 不需要 XML 配置文件
+* 可以管理单个实例和域
+* 完成大多数配置管理功能，以及基本的监视功能
+** 注意，不能替代JON(Red Hat JBoss Operations Network)产品
 image:admin-console.png[]
 
 [NOTE]
@@ -673,7 +695,7 @@ image:admin-console.png[]
 ====
 
 [.topic.source]
-== Migrate to WildFly
+== 迁移到WildFly
 
 image::glassfish-dish.png[700, 364]
 
@@ -681,39 +703,37 @@ NOTE: http://wildfly.org/news/2014/02/06/GlassFish-to-WildFly-migration/
 
 NOTE: http://zeroturnaround.com/rebellabs/abandon-fish-migrating-from-glassfish-to-jboss-or-tomee/
 
-== !
-"the most logical decision when migrating from GlassFish is opting for an *equivalent open source alternative*"
--- zeroturnaround.com
-
-[.topic.source]
-== JBoss/WildFly or TomEE chosen because ...
-* Vibrant developer community
-* Amount of documentation on the web
-* Sponsorship and support by market leaders
+[NOTE]
+[role="speaker"]
+====
+* 如果有意向转向　wildfly，　wildfly　社区也提供了大量的文档介绍如何进行迁移
+====
 
 [.topic.recap]
-== WildFly is:
+== WildFly:
 
 ====
-* Java EE 7 compliant
-* lightweight
-* managable
-* highly scalable
-* open source
-* application server
+* Java EE 7 兼容
+* 轻量的
+* 可管理的
+* 高度可扩展
+* 开源
+* 应用服务器
 
-_Now available!_
+_马上使用!_
 ====
 
 [.topic.source]
-== Open source polyglot conference
+== 开源技术大会
 
 image::devnation_summitpromo.png[]
 
 [.topic.source]
-== References
+== 参考
 
 NOTE: WildFly - http://wildfly.org, http://github.com/wildfly, @WildFlyAS
+
+NOTE: WildFly Document  - https://docs.jboss.org/author/display/WFLY8/Documentation
 
 NOTE: JBoss EAP 6.2 - http://www.jboss.org/products/eap
 
